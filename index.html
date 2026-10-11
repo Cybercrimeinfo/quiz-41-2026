@@ -1,0 +1,248 @@
+<!doctype html>
+<!-- v1.0.4 | 11 okt 2026 -->
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cybercrimeinfo Quiz - Week 41-2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap');
+:root{--bg:#0a0e17;--surface:#111827;--hover:#1a2234;--border:#1e293b;--accent:#f59e0b;--good:#10b981;--bad:#ef4444;--text:#e2e8f0;--dim:#94a3b8;--muted:#64748b}
+*{box-sizing:border-box;margin:0;padding:0}body{background:var(--bg);color:var(--text);font-family:Outfit,sans-serif;line-height:1.6;min-height:100vh}.container{margin:auto;max-width:800px;padding:2rem 1.5rem}header{text-align:center;border-bottom:1px solid var(--border);margin-bottom:2rem;padding-bottom:2rem}.badge{display:inline-block;background:#f59e0b18;border:1px solid #f59e0b55;border-radius:99px;color:var(--accent);font:700 .75rem 'JetBrains Mono';letter-spacing:.05em;margin-bottom:1rem;padding:.35rem 1rem;text-transform:uppercase}h1{color:var(--accent);font-size:2rem}header p{color:var(--dim);margin-top:.45rem}.progress{background:var(--border);border-radius:3px;height:5px;margin-bottom:1.25rem;overflow:hidden}.progress span{background:var(--accent);display:block;height:100%;transition:width .3s;width:0}.score{text-align:center;color:var(--muted);font:.85rem 'JetBrains Mono';margin-bottom:1.5rem}.score b{color:var(--accent)}.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:1.25rem;padding:1.7rem}.card.good{border-color:var(--good)}.card.bad{border-color:var(--bad)}.number{color:var(--muted);font:.7rem 'JetBrains Mono';letter-spacing:.1em;text-transform:uppercase}.question{font-size:1.08rem;font-weight:600;margin:.65rem 0 1.2rem}.options{display:grid;gap:.6rem}.option{width:100%;text-align:left;font:inherit;align-items:center;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;display:flex;gap:.8rem;padding:.8rem 1rem}.option:hover:not(.disabled){background:var(--hover);border-color:var(--accent)}.letter{flex-shrink:0;align-items:center;border:1px solid var(--border);border-radius:4px;color:var(--text);display:flex;font:700 .75rem 'JetBrains Mono';height:24px;justify-content:center;width:24px}.option:focus-visible,.restart:focus-visible{outline:3px solid #7dd3fc;outline-offset:3px}.option.disabled{cursor:default;opacity:.62}.option.correct,.option.wrong{opacity:1}.option.correct{background:#10b98116;border-color:var(--good)}.option.correct .letter{background:var(--good);color:var(--bg)}.option.wrong{background:#ef444416;border-color:var(--bad)}.option.wrong .letter{background:var(--bad);color:var(--bg)}.feedback{border-radius:8px;display:none;font-size:.9rem;margin-top:1rem;padding:.8rem 1rem}.feedback.show{display:block}.feedback.good{background:#10b98116;color:var(--good)}.feedback.bad{background:#ef444416;color:var(--bad)}.results{background:var(--surface);border:1px solid var(--accent);border-radius:12px;display:none;padding:2.5rem 2rem;text-align:center}.results.show{display:block}.final{color:var(--accent);font:700 3rem 'JetBrains Mono';margin:1rem}.restart{background:var(--accent);border:0;border-radius:8px;color:var(--bg);cursor:pointer;font:600 1rem Outfit;padding:.8rem 1.8rem;margin-top:1.25rem}footer{border-top:1px solid var(--border);color:var(--muted);font-size:.8rem;margin-top:2rem;padding:2rem 0;text-align:center}footer a{color:var(--accent)}@media(max-width:600px){.container{padding:1rem}.card{padding:1.2rem}h1{font-size:1.55rem}}
+</style>
+</head>
+<body><main class="container">
+<header><div class="badge">Week 41 &bull; 2026</div><h1>Cybercrime Quiz</h1><p>Weekoverzicht van 3 tot en met 9 oktober 2026</p><p>Een oud datalek dat opnieuw opduikt, misleiding via hotelwifi en aanvallen op WordPress sites. Wat weet jij nog van het cybercrimenieuws van deze week? Test je kennis in twintig vragen, met uitleg na elk antwoord.</p></header>
+<div class="progress" role="progressbar" aria-label="Beantwoorde vragen" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><span id="progress"></span></div><div class="score">Score: <b id="score">0</b> / <b id="answered">0</b></div><section id="quiz"></section>
+<section class="results" id="results"><h2>Quiz voltooid!</h2><div class="final" id="final"></div><p id="message"></p><button class="restart" onclick="restartQuiz()">Opnieuw spelen</button></section>
+</main><footer>Cybercrimeinfo Quiz WK41-2026 &bull; <a href="https://www.ccinfo.nl">ccinfo.nl</a> &bull; 11 oktober 2026</footer>
+<script>
+const questions=[
+  {
+    "q": "Het datalek bij het Waalse opleidingsinstituut IFAPME kwam opnieuw in het nieuws. Wanneer vond de inbraak volgens IFAPME plaats?",
+    "options": [
+      "In januari 2026",
+      "In februari 2026",
+      "In september 2026",
+      "In oktober 2026"
+    ],
+    "correct": 1,
+    "explanation": "IFAPME bevestigt dat de onbevoegde toegang in februari plaatsvond. Het nieuwe bericht in oktober gaat over dat eerdere incident, niet over een nieuwe inbraak. IFAPME zegt de omvang van de verspreide gegevens niet te kunnen bevestigen."
+  },
+  {
+    "q": "Het onderzoek naar de inbraak bij het OM gaf geen duidelijkheid over de exacte toedracht. Welke conclusie past bij die onzekerheid?",
+    "options": [
+      "Alleen de Citrix systemen zijn geraakt, de rest is bewezen veilig",
+      "Geen melding betekent dat er ook geen inbraak is geweest",
+      "Datadiefstal is vastgesteld, alleen de hoeveelheid is onbekend",
+      "Datadiefstal is niet aangetoond, de exacte toedracht blijft onduidelijk"
+    ],
+    "correct": 3,
+    "explanation": "Het OM meldt geen aanleiding om aan te nemen dat informatie is meegenomen, maar zegt ook dat het rapport de exacte toedracht niet opheldert. Bovendien ontbrak monitoring van de Citrix NetScaler systemen. Dat is geen grond om onzekerheid als bewijs van volledige veiligheid te presenteren."
+  },
+  {
+    "q": "In welke omgeving vond DIVD volgens het bijgewerkte onderzoek géén sporen van inbraak?",
+    "options": [
+      "De interne communicatie via Slack",
+      "De kantooromgeving in GSuite",
+      "De projectomgeving met Jira en Confluence",
+      "De systemen voor IT ondersteuning"
+    ],
+    "correct": 0,
+    "explanation": "DIVD meldde geen sporen van inbraak in Slack, de personeelsomgeving en de broncode. In GSuite, de IT ondersteuning en de projectomgeving zijn juist sporen van gedeeltelijke datadiefstal gevonden. Het overzicht maakt onderscheid tussen onderzochte onderdelen en onderzoek dat nog loopt."
+  },
+  {
+    "q": "Vercel Sandbox kwam in het nieuws door onderzoek naar een ontsnapping uit de omgeving. Wat noemt Vercel de beveiligingsgrens voor de code die in een sandbox draait?",
+    "options": [
+      "De Linuxcontainer binnen de gastmachine",
+      "Het account waarmee een ontwikkelaar zich aanmeldt",
+      "De Firecracker microVM met een eigen gastkernel",
+      "De map waarin de uitvoerbestanden worden opgeslagen"
+    ],
+    "correct": 2,
+    "explanation": "Elke sandbox krijgt volgens Vercel een eigen Firecracker microVM. Binnen die microVM draait een Linuxcontainer met de code van de gebruiker. Vercel noemt nadrukkelijk de microVM, niet de container, de beveiligingsgrens voor die uitvoering. De netwerkbeperkingen worden daarnaast buiten de microVM afgedwongen."
+  },
+  {
+    "q": "Welke beperkte rol volstaat volgens Veeam om het lek CVE-2025-64393 te misbruiken voor het uitvoeren van code op de backupserver?",
+    "options": [
+      "Backup Viewer",
+      "Alleen Backup Administrator",
+      "Alleen een volledige domeinbeheerder",
+      "Alleen de beheerder van Enterprise Manager"
+    ],
+    "correct": 0,
+    "explanation": "Een gebruiker met de rol Backup Viewer kan door onveilige deserialisatie in de Mount Service code uitvoeren. Een beheerdersaccount is daarvoor niet nodig, maar het is ook geen aanval zonder account. Veeam verhelpt dit in versie 12.3.2.4934; versie 13 is volgens het advies niet getroffen."
+  },
+  {
+    "q": "Waarom is alleen het bijwerken van Ninja Forms en WPC Product Bundles niet genoeg als een WordPress site al door deze campagne is besmet?",
+    "options": [
+      "De update schakelt de toegangscontrole van WordPress uit",
+      "De aanval treft uitsluitend de browsercache van bezoekers",
+      "De update verwijdert automatisch ook alle betrouwbare beheerders",
+      "Achtergelaten accounts en andere achterdeuren kunnen blijven bestaan"
+    ],
+    "correct": 3,
+    "explanation": "Patchstack beschrijft meerdere manieren waarop aanvallers toegang behouden, waaronder verborgen beheerders en extra bestanden. Een update sluit de kwetsbaarheid, maar ruimt die achterdeuren niet vanzelf op. Onderzoek daarom ook accounts, plugins en bestanden en vervang betrokken wachtwoorden en authenticatiesleutels."
+  },
+  {
+    "q": "Welke combinatie veroorzaakt volgens JFrog het risico op codeuitvoering bij de onderzochte netwerkconfiguratie van LMCache?",
+    "options": [
+      "Een verlopen certificaat en een verkeerde systeemklok",
+      "Een te korte cachetijd en een volle harde schijf",
+      "Een verbinding zonder authenticatie en het uitpakken van onbetrouwbare pickle berichten",
+      "Een openbaar model en een onjuist wachtwoordbeleid voor eindgebruikers"
+    ],
+    "correct": 2,
+    "explanation": "In de multiprocesmodus kunnen bepaalde ZeroMQ berichten zonder authenticatie met pickle worden uitgepakt. Daarbij kan code worden uitgevoerd. Het risico op een aanval vanaf een andere machine ontstaat als die verbinding via het netwerk bereikbaar is; standaard luistert zij alleen op de eigen machine."
+  },
+  {
+    "q": "Voor welke apparaten waarschuwden AIVD en MIVD dat Chinese hackers ze vaker gebruiken om netwerken binnen te dringen?",
+    "options": [
+      "Alleen printers zonder netwerkaansluiting",
+      "Apparaten aan de netwerkrand, zoals firewalls en VPN gateways",
+      "Uitsluitend telefoons die via bluetooth verbinden",
+      "Alleen externe harde schijven voor offline backups"
+    ],
+    "correct": 1,
+    "explanation": "Het gaat om edge devices die een organisatie met het internet verbinden, zoals firewalls, VPN gateways en portals. Via kwetsbaarheden kunnen aanvallers het achterliggende netwerk bereiken. De diensten adviseren onder meer snel bijwerken en meerdere beveiligingslagen."
+  },
+  {
+    "q": "Welke internetverbinding heeft volgens Microsoft de voorkeur voor reizigers die zich tegen CaptiveCrunch willen beschermen?",
+    "options": [
+      "Het gastnetwerk dat geen wachtwoord vraagt",
+      "De hotelwifi na installatie van een aangeboden certificaat",
+      "Het openbare netwerk met het sterkste signaal",
+      "Waar mogelijk een vertrouwde mobiele hotspot"
+    ],
+    "correct": 3,
+    "explanation": "Microsoft adviseert een vertrouwde mobiele hotspot boven een onbetrouwbaar gastnetwerk. Download geen zogenaamde beveiligingsupdates of certificaten vanaf zo'n inlogportaal. Installeer updates via de gebruikelijke kanalen van het besturingssysteem."
+  },
+  {
+    "q": "Welk lokmiddel gebruikten de aanvallers volgens Unit 42 bij Blinder Tunnel tegen een doelwit in Irak?",
+    "options": [
+      "Een kwaadaardige programmeeropdracht bij een nepvacature van Dubai Airports",
+      "Een echte verplichte update van de luchthavenapp",
+      "Een betalingsverzoek voor een bestaande vliegticketboeking",
+      "Een openbaar datalek met de wachtwoorden van alle reizigers"
+    ],
+    "correct": 0,
+    "explanation": "De aanvallers deden zich voor als recruiters van Dubai Airports en leverden een gemanipuleerde programmeeropdracht aan. Unit 42 verbindt de campagne aan een actor die aan Iran is gelieerd. Misbruik van de naam van Dubai Airports betekent niet dat bij de luchthaven zelf is ingebroken."
+  },
+  {
+    "q": "ClingSTUN misbruikt publieke STUN diensten voor netwerkverbindingen. Wat betekent dat volgens FortiGuard Labs voor het beoordelen van die diensten?",
+    "options": [
+      "Iedere STUN server is daardoor bewezen van de aanvallers",
+      "STUN verkeer kan uitsluitend van malware afkomstig zijn",
+      "Een gebruikte publieke STUN dienst is niet automatisch infrastructuur van de aanvaller",
+      "Het gebruik van STUN bewijst dat het besmette apparaat schoon is"
+    ],
+    "correct": 2,
+    "explanation": "ClingSTUN kan legitieme publieke diensten misbruiken om externe adressen en poortkoppelingen te vinden. FortiGuard Labs waarschuwt die diensten niet automatisch als infrastructuur van aanvallers aan te merken. Beoordeel het verkeer samen met onder meer verdachte processen en onverwachte verbindingen."
+  },
+  {
+    "q": "Via welk soort DNS record haalt de ClickFix campagne met CrocoRat volgens Flare de vervolgstap op?",
+    "options": [
+      "Een TXT record",
+      "Een MX record",
+      "Een CAA record",
+      "Een PTR record"
+    ],
+    "correct": 0,
+    "explanation": "Het geplakte commando verwijst naar een vervolgstap in een DNS TXT record. Flare beschrijft DNS hier als middel om de volgende stap aan te leveren. Dat is niet hetzelfde als bewijs dat alle verdere communicatie van de malware via DNS loopt."
+  },
+  {
+    "q": "Wat maakt het nagemaakte inlogvenster in de Browser in the Browser campagne die Island beschrijft misleidend?",
+    "options": [
+      "De echte browser heeft zijn adresbalk definitief verwijderd",
+      "Het venster met een vertrouwde adresbalk is binnen de phishingpagina getekend",
+      "Google heeft het phishingdomein als officieel domein geregistreerd",
+      "De gebruiker wordt automatisch naar de echte bankwebsite doorgestuurd"
+    ],
+    "correct": 1,
+    "explanation": "De pagina tekent zelf een venster met een adresbalk die bijvoorbeeld Google of Okta toont. De echte browser staat ondertussen nog op het phishingdomein. Een vertrouwd adres dat binnen een webpagina wordt afgebeeld, is dus geen bewijs dat je op die website bent."
+  },
+  {
+    "q": "Wat was volgens DoubleCounter de eerste toegang bij de aanval op zijn dienst voor verificatie van gebruikers van Discord?",
+    "options": [
+      "Een verplichte update van de officiële Discord app",
+      "Een gestolen wachtwoord van iedere Discord gebruiker",
+      "Een nieuwe kwetsbaarheid in de versleuteling van Discord",
+      "Een kwetsbare Metabase installatie op een oude, nog bereikbare server"
+    ],
+    "correct": 3,
+    "explanation": "DoubleCounter meldt dat een oude server nog een via internet bereikbare Metabase installatie bevatte. Na toegang vonden aanvallers inloggegevens waarmee zij verder konden naar de cloudomgeving. Het incident laat zien waarom ook buiten gebruik gestelde systemen moeten worden afgesloten en opgeslagen sleutels ingetrokken."
+  },
+  {
+    "q": "Waarom kan een sleutel die uit de huidige code is verwijderd bij de nieuwe golf van GhostAction toch nog worden gestolen?",
+    "options": [
+      "GitHub publiceert verwijderde sleutels standaard in de profielnaam",
+      "De kwaadaardige workflow doorzoekt ook de geschiedenis van de repository",
+      "Iedere API sleutel kan uit alleen zijn laatste vier tekens worden hersteld",
+      "Een verwijderde sleutel wordt automatisch naar alle volgers gemaild"
+    ],
+    "correct": 1,
+    "explanation": "Socket beschrijft dat de workflow naast de huidige bestanden ook de geschiedenis van de repository doorzoekt. Een geheim kan daar nog aanwezig zijn nadat het uit de actuele code is verwijderd. Alleen de laatste versie opschonen volstaat dus niet; blootgestelde sleutels moeten worden ingetrokken of vervangen."
+  },
+  {
+    "q": "Hoe handelde het Openbaar Ministerie de zaak tegen de man die met valse identiteiten online casino's misleidde af?",
+    "options": [
+      "Met een vrijspraak door de Hoge Raad",
+      "Met alleen een waarschuwing zonder geldelijke gevolgen",
+      "Met een strafbeschikking, dus zonder behandeling door een rechter",
+      "Met een gevangenisstraf na een juryproces"
+    ],
+    "correct": 2,
+    "explanation": "Het OM legde een strafbeschikking op met een taakstraf van 180 uur. De bron zegt expliciet dat de zaak buiten de rechter om is afgedaan. Het gaat hier dus niet om een door een rechter uitgesproken straf."
+  },
+  {
+    "q": "Waarom kan het IP adres van een onschuldige burger opduiken in onderzoek naar de malafide proxydienst die de politie offline haalde?",
+    "options": [
+      "De politie kent automatisch alle gebruikers hetzelfde adres toe",
+      "Een IP adres wordt pas aangemaakt wanneer iemand fraude pleegt",
+      "De eigenaar heeft daarmee bewezen toestemming voor de misdaad gegeven",
+      "Criminelen kunnen hun verkeer via een besmet apparaat van die burger laten lopen"
+    ],
+    "correct": 3,
+    "explanation": "Via de dienst konden criminelen hun verkeer over besmette apparaten van nietsvermoedende burgers en bedrijven laten lopen. Daardoor kon hun IP adres in een onderzoek onterecht als verdacht naar voren komen. Een gevonden IP adres is dus op zichzelf geen bewijs dat de eigenaar de dader is."
+  },
+  {
+    "q": "Waarvan beschuldigen de Amerikaanse autoriteiten de eigenaar van ransomwareherstelbedrijf MonsterCloud?",
+    "options": [
+      "Dat hij klantgegevens verkocht in plaats van ze na herstel te verwijderen",
+      "Dat hij heimelijk losgeld betaalde terwijl hij herstel zonder losgeld beloofde",
+      "Dat hij de losgeldbedragen zonder toestemming openbaar maakte",
+      "Dat hij opdracht gaf om klanten opnieuw met ransomware aan te vallen"
+    ],
+    "correct": 1,
+    "explanation": "Volgens de aanklacht beloofde hij gegevens met eigen technieken te herstellen zonder criminelen te betalen. In werkelijkheid zou hij heimelijk losgeld hebben betaald en zijn klanten meer hebben berekend. Het gaat om een beschuldiging, niet om een veroordeling; de verdachte wordt als onschuldig beschouwd totdat schuld is bewezen."
+  },
+  {
+    "q": "Welke standaard geldigheidsduur kondigde Let's Encrypt aan voor certificaten die vanaf 10 februari 2027 worden uitgegeven of vernieuwd?",
+    "options": [
+      "90 dagen",
+      "Een jaar",
+      "64 dagen",
+      "Zes uur"
+    ],
+    "correct": 2,
+    "explanation": "Let's Encrypt verkort de standaardduur van 90 naar 64 dagen vanaf 10 februari 2027. Dat is een aangekondigde verandering, niet de geldigheidsduur van alle certificaten op dit moment. Geldige bestaande certificaten worden door deze wijziging niet ingetrokken."
+  },
+  {
+    "q": "Waarom kunnen verbonden laadpalen, omvormers en thuisaccu's volgens de RDI een risico vormen voor het elektriciteitsnet?",
+    "options": [
+      "Veel apparaten kunnen via centrale aansturing tegelijk worden in- of uitgeschakeld",
+      "Ieder verbonden apparaat veroorzaakt voortdurend een stroomstoring",
+      "Een omvormer kan alleen werken als alle beveiliging uitstaat",
+      "Alleen apparaten zonder internetverbinding kunnen op afstand worden bestuurd"
+    ],
+    "correct": 0,
+    "explanation": "Een aanval of een foutieve update kan via centrale systemen veel apparaten tegelijk schakelen. Die gelijktijdigheid kan het elektriciteitsnet verstoren. De RDI beschrijft een risico en noodzakelijke bescherming, geen bewijs dat zo'n grootschalige storing in deze week daadwerkelijk heeft plaatsgevonden."
+  }
+];questions.forEach(question=>{Object.freeze(question.options);Object.freeze(question)});Object.freeze(questions);
+let score=0,answered=0;const letters=['A','B','C','D'];
+function render(){const root=document.getElementById('quiz');root.innerHTML='';score=0;answered=0;update();questions.forEach((q,i)=>{const card=document.createElement('article');card.className='card';card.id='q'+i;card.innerHTML='<div class="number">Vraag '+(i+1)+' van '+questions.length+'</div><div class="question">'+q.q+'</div><div class="options">'+q.options.map((o,j)=>'<button class="option" id="q'+i+'o'+j+'" onclick="answer('+i+','+j+')"><span class="letter">'+letters[j]+'</span><span>'+o+'</span></button>').join('')+'</div><div class="feedback" aria-live="polite" id="fb'+i+'"></div>';root.appendChild(card)})}
+function answer(i,j){const q=questions[i],card=document.getElementById('q'+i);if(card.dataset.done)return;card.dataset.done='1';answered++;const ok=j===q.correct;if(ok)score++;q.options.forEach((_,k)=>{const el=document.getElementById('q'+i+'o'+k);el.classList.add('disabled');el.disabled=true;if(k===q.correct)el.classList.add('correct');if(k===j&&!ok)el.classList.add('wrong')});card.classList.add(ok?'good':'bad');const fb=document.getElementById('fb'+i);fb.className='feedback show '+(ok?'good':'bad');fb.textContent=(ok?'✓ Goed! ':'✗ Fout. ')+q.explanation;update();if(answered===questions.length)setTimeout(showResults,500)}
+function update(){document.getElementById('score').textContent=score;document.getElementById('answered').textContent=answered;document.querySelector('[role=progressbar]').setAttribute('aria-valuenow',answered);document.getElementById('progress').style.width=(answered/questions.length*100)+'%'}
+function showResults(){const r=document.getElementById('results');r.classList.add('show');document.getElementById('final').textContent=score+' / '+questions.length;document.getElementById('message').textContent=score===20?'Perfect, alle vragen goed!':score>=16?'Uitstekend, je bent goed op de hoogte.':score>=12?'Goed gedaan, veel onderwerpen zijn bekend.':'Lees de weekoverzichten nog eens terug en probeer opnieuw.';r.scrollIntoView({behavior:'smooth'})}
+function restartQuiz(){document.getElementById('results').classList.remove('show');render();scrollTo({top:0,behavior:'smooth'})}render();
+</script></body></html>
